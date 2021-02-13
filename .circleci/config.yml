@@ -15,7 +15,7 @@ jobs:
             pip install -r packages/regression_model/requirements.txt
             chmod +x ./scripts/fetch_kaggle_dataset.sh
             ./scripts/fetch_kaggle_dataset.sh
-            py.test -vv packages/regression_model/tests
+            pytest packages/regression_model/tests
 
   test_ml_api:
     working_directory: ~/project
@@ -30,7 +30,7 @@ jobs:
             . venv/bin/activate
             pip install --upgrade pip
             pip install -r packages/ml_api/requirements.txt
-            py.test -vv packages/ml_api/tests
+            pytest packages/ml_api/tests
 
   train_and_upload_regression_model:
     working_directory: ~/project
