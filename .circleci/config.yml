@@ -50,7 +50,7 @@ jobs:
             . venv/bin/activate
             chmod +x ./scripts/fetch_kaggle_dataset.sh ./scripts/publish_model.sh
             ./scripts/fetch_kaggle_dataset.sh
-            PYTHONPATH="{$PWD}/packages/regression_model" 
+            export PYTHONPATH="{$PWD}/packages/regression_model" 
             python3 packages/regression_model/regression_model/train_pipeline.py
             ./scripts/publish_model.sh ./packages/regression_model/
 
