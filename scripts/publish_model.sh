@@ -33,6 +33,7 @@ build() {
     done
 }
 
+# -n "$DIRS" means "$DIRS" is not empty
 if [ -n "$DIRS" ]; then
     for dir in $DIRS; do
         build $dir
