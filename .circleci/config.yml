@@ -1,9 +1,9 @@
 version: 2
 
 defaults: &defaults
+  working_directory: ~/project
   docker:
     - image: circleci/python:3.7.2
-  working_directory: ~/project
 
 prepare_venv: &prepare_venv
   run:
@@ -42,7 +42,7 @@ jobs:
           name: Run tests
           command: |
             . venv/bin/activate
-            py.test -vv packages/regression_model/tests
+            pytest packages/regression_model/tests
 
   test_ml_api:
     <<: *defaults
@@ -58,7 +58,7 @@ jobs:
             . venv/bin/activate
             pip install --upgrade pip
             pip install -r packages/ml_api/requirements.txt
-            py.test -vv packages/ml_api/tests
+            pytest packages/ml_api/tests
       - save_cache:
           key: py-deps-{{ checksum "packages/ml_api/requirements.txt" }}
           paths:
