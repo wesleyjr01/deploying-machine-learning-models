@@ -59,10 +59,10 @@ jobs:
             pip install --upgrade pip
             pip install -r packages/ml_api/requirements.txt
             pytest packages/ml_api/tests
-      - save_cache:
-          key: py-deps-{{ checksum "packages/ml_api/requirements.txt" }}
-          paths:
-            - "/venv"
+      # - save_cache:
+      #     key: py-deps-{{ checksum "packages/ml_api/requirements.txt" }}
+      #     paths:
+      #       - "/venv"
 
   train_and_upload_regression_model:
     <<: *defaults
