@@ -4,6 +4,7 @@
 
 GEMFURY_URL=$PIP_EXTRA_INDEX_URL
 
+# Termina o script de executar se der qualquer erro, de qualquer comando.
 set -e
 
 DIRS="$@"
@@ -20,10 +21,17 @@ die() {
 }
 
 build() {
+    # tirando a ultima barra de DIR
     DIR="${1/%\//}"
     echo "Checking directory $DIR"
     cd "$BASE_DIR/$DIR"
-    [ ! -e $SETUP ] && warn "No $SETUP file, skipping" && return
+    # -e checka a existencia de arquivo
+    # da pra refatorar e por um if
+    # [ ! -e $SETUP ] && warn "No $SETUP file, skipping" && return
+    if [ ! -e $SETUP ]; then
+        warn "No $SETUP file, skipping"
+        return
+    fi
     PACKAGE_NAME=$(python $SETUP --fullname)
     echo "Package $PACKAGE_NAME"
     python "$SETUP" sdist bdist_wheel || die "Building package $PACKAGE_NAME failed"
