@@ -1,5 +1,6 @@
 NAME=udemy-ml-api
-COMMIT_ID=$(shell git rev-parse HEAD)
+# COMMIT_ID=$(shell git rev-parse HEAD)
+COMMIT_ID=latest
 
 
 build-ml-api-heroku:
@@ -15,4 +16,4 @@ push-ml-api-aws:
 	docker push ${AWS_ACCOUNT_ID}.dkr.ecr.sa-east-1.amazonaws.com/$(NAME):$(COMMIT_ID)
 
 tag-ml-api:
-	docker tag $(NAME):$(COMMIT_ID) ${AWS_ACCOUNT_ID}.dkr.ecr.us-east-1.amazonaws.com/$(NAME):$(COMMIT_ID)
+	docker tag $(NAME):$(COMMIT_ID) ${AWS_ACCOUNT_ID}.dkr.ecr.sa-east-1.amazonaws.com/$(NAME):$(COMMIT_ID)
